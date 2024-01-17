@@ -580,7 +580,7 @@ function check() {
         }
         else if (document.body.innerHTML.includes('设置') || document.body.innerHTML.includes('a href="/history"')) {
             const c = new Date().getHours()
-            if (c > 0 || c < 0) {
+            if (c > 23 || c < 12) {
                 run()
             } else {
                 notice.push("当前时间段不允许爬虫,请给正常用户以访问空间", Notice.ERROR)
