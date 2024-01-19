@@ -244,10 +244,12 @@ buildTxtContent(jsonData) {
                 chapterTitle += " [未共享]";
             } else if (chap.content === "") {
                 chapterTitle += " [无正文]";
+            } else if (chap.content.includes("Access Denied")) {
+                chapterTitle += " [正文加载出错]";
             }
             txtContent += `  ${chapterTitle}\n`;
 
-            if (chap.CanDownload !== false && chap.content) {
+            if (chap.CanDownload !== false && chap.content && !chap.content.includes("Access Denied")) {
                 txtContent += `    ${chap.content}\n\n`;
             }
         });
