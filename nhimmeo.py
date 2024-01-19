@@ -46,14 +46,14 @@ else:
         Chaptername = i["name"]
         for j in i["lists"]:
             chap = i["lists"][j]
-            content = chap["content"].split("\n")
+            content = chap["content"].replace("　　", "\n").split("\n")
             text = [{
                 "Uid": chap["href"].split("/")[-1],
                 "title": f'{Chaptername}-{chap["name"]}',
                 "lines": []
             }]
             for k in content:
-                k = re.sub(r'[\u0000-\u10FFFF]', " ", k)
+                k = re.sub(r'[\u0000-\u001F\u007F-\u009F\uFDD0-\uFDEF]', " ", k)
                 if "<img" not in k:
                     text[0]['lines'].append({
                         "type": "p",
